@@ -20,9 +20,16 @@ from autogen_agentchat.ui import Console
 def create_openai_model_client():
     """创建 OpenAI 模型客户端用于测试"""
     return OpenAIChatCompletionClient(
-        model=os.getenv("LLM_MODEL_ID", "gpt-4o"),
+        model=os.getenv("LLM_MODEL_ID"),
         api_key=os.getenv("LLM_API_KEY"),
-        base_url=os.getenv("LLM_BASE_URL", "https://api.openai.com/v1")
+        base_url=os.getenv("LLM_BASE_URL"),
+        model_info={
+            "vision": False,
+            "function_calling": True,
+            "json_output": True,
+            "family": "unknown",
+            "structured_output": True,
+        },
     )
 
 def create_product_manager(model_client):
